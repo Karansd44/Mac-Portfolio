@@ -1,4 +1,4 @@
-import { locations } from '#constants'
+import { locations } from '../constants'
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import dayjs from 'dayjs'
-import {navIcons, navLinks, locations} from '#constants'
+import {navIcons, navLinks, locations} from '../constants'
 import useWindowStore from '#store/window';
 import useLocationStore from '#store/location';
 

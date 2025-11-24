@@ -3,7 +3,7 @@ import WindowWrapper from "#hoc/WindowWrapper"
 import {Search} from "lucide-react"
 import useLocationStore from "#store/location"
 import clsx from "clsx"
-import {locations} from "#constants"
+import {locations} from "../constants"
 import useWindowStore from "#store/window"
 
 const Finder = () => {

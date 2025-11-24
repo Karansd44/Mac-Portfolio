@@ -1,7 +1,7 @@
 import {Mail, Search} from "lucide-react"
 import WindowWrapper from "#hoc/WindowWrapper"
 import WindowControls from "#components/WindowControls"
-import {gallery, photosLinks} from "#constants"
+import {gallery, photosLinks} from "../constants"
 import useWindowStore from "#store/window"
 
 const Photos = () => {

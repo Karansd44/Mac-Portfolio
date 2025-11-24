@@ -1,4 +1,4 @@
-import {socials} from '#constants'
+import {socials} from '../constants'
 import React from 'react'
 import WindowWrapper from '#hoc/WindowWrapper'
 import {WindowControls} from '#components'
@@ -15,7 +15,9 @@ const Contact = () => {
                 <img src="/images/karan.png" alt="karan" className='w-20 rounded-full'/>
                 <h3>Let's connect</h3>
                 <p>Got an idea? A bug to squash? Or just wanna talk  tech? I'm in.</p>
-                <p>Send me an email at <a href="mailto:karansd442004@gmail.com" className='text-blue-500'>karansd442004@gmail.com</a></p>
+                <p>Send me an email at
+                    <a href="mailto:karansd442004@gmail.com" className='text-blue-500'>karansd442004@gmail.com</a>
+                </p>
                 <ul> {
                     socials.map(({
                         id,

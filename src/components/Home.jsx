@@ -1,5 +1,5 @@
 import React from 'react'
-import {locations} from "#constants"
+import {locations} from "../constants"
 import clsx from "clsx"
 import {useGSAP} from '@gsap/react';
 import {Draggable} from "gsap/Draggable"
