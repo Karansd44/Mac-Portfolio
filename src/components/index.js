@@ -1,7 +1,8 @@
-import Navbar from '#components/Navbar.jsx'
-import Welcome from '#components/Welcome.jsx'
-import Dock from '#components/Dock.jsx'
-import WindowControls from '#components/WindowControls.jsx'
-import Home from '#components/Home.jsx'
+import Navbar from './Navbar.jsx'
+import Dock from './Dock.jsx'
+import Welcome from './Welcome.jsx'
+import WindowControls from './WindowControls.jsx'
+import Home from './Home.jsx'
+import AppleLoader from './AppleLoader.jsx'
 
-export { Navbar, Welcome, Dock, WindowControls, Home };
+export { Navbar, Dock, Welcome, WindowControls, Home, AppleLoader }

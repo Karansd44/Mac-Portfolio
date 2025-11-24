@@ -72,6 +72,18 @@ const dockApps = [
     icon: "trash.png",
     canOpen: false,
   },
+  {
+    id: "linkedin",
+    name: "LinkedIn", // was "Trash"
+    icon: "linkedin.png",
+    canOpen: true,
+  },
+  {
+    id: "github",
+    name: "GitHub", // was "Trash"
+    icon: "github2.png",
+    canOpen: true,
+  },
 ];
 
 const blogPosts = [
@@ -184,15 +196,11 @@ const gallery = [
   },
   {
     id: 2,
-    img: "/images/gal2.png",
+    img: "/images/karan.png",
   },
-  {
+   {
     id: 3,
-    img: "/images/gal3.png",
-  },
-  {
-    id: 4,
-    img: "/images/gal4.png",
+    img: "/images/karan-2.png",
   },
 ];
 
@@ -352,7 +360,7 @@ const WORK_LOCATION = {
       icon: "/images/folder.png",
       kind: "folder",
       position: "top-10 right-3",
-      windowPosition: "top-[45vh] left-90",
+      windowPosition: "top-[45vh] left-96",
       children: [
         {
           id: 1,
@@ -388,6 +396,49 @@ const WORK_LOCATION = {
         },
       ],
     },
+    // ▶ Project 5
+    {
+      id: 9,
+      name: "Portfolio",
+      icon: "/images/folder.png",
+      kind: "folder",
+      position: "top-40 left-3",
+      windowPosition: "top-[5vh] left-96",
+      children: [
+        {
+          id: 1,
+          name: "Portfolio.txt",
+          icon: "/images/txt.png",
+          kind: "file",
+          fileType: "txt",
+          position: "top-5 left-10",
+          description: [
+            "Built a responsive portfolio website using Next.js, React, and Tailwind CSS with clean UI and smooth user experience.",
+            "Implemented a custom interactive AI chatbot to deliver real-time information about my skills, experience, and projects.",
+            "Integrated dark/light mode, project showcases, and a contact form for seamless user interaction and navigation.",
+            "Structured the codebase with reusable components and modern tooling for scalability and optimized performance."
+          ],
+        },
+        {
+          id: 2,
+          name: "Portfolio.com",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "https://karan-sd.vercel.app/",
+          position: "top-10 right-20",
+        },
+        {
+          id: 4,
+          name: "portfolio.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          position: "top-52 right-80",
+          imageUrl: "/images/work-6.png",
+        },
+      ],
+    },
   ],
 };
 
@@ -405,40 +456,31 @@ const ABOUT_LOCATION = {
       kind: "file",
       fileType: "img",
       position: "top-10 left-5",
-      imageUrl: "/images/karan.jpg",
+      imageUrl: "/images/karan.png",
     },
     {
       id: 2,
-      name: "casual-me.png",
-      icon: "/images/image.png",
-      kind: "file",
-      fileType: "img",
-      position: "top-28 right-72",
-      imageUrl: "/images/karan-2.jpg",
-    },
-    {
-      id: 3,
       name: "conference-me.png",
       icon: "/images/image.png",
       kind: "file",
       fileType: "img",
       position: "top-52 left-80",
-      imageUrl: "/images/karan-3.jpeg",
+      imageUrl: "/images/karan-3.png",
     },
     {
-      id: 4,
+      id: 3,
       name: "about-me.txt",
       icon: "/images/txt.png",
       kind: "file",
       fileType: "txt",
       position: "top-60 left-5",
       subtitle: "Meet the Developer Behind the Code",
-      image: "/images/karan.jpg",
+      image: "/images/karan.png",
       description: [
-        "Hey! I’m Karan 👋, a web developer who enjoys building sleek, interactive websites that actually work well.",
-        "I specialize in JavaScript, React, and Next.js—and I love making things feel smooth, fast, and just a little bit delightful.",
-        "I’m big on clean UI, good UX, and writing code that doesn’t need a search party to debug.",
-        "Outside of dev work, you'll find me tweaking layouts at 2AM, sipping overpriced coffee, or impulse-buying gadgets I absolutely convinced myself I needed 😅",
+      "I’m Karan, a full-stack developer with experience building responsive and high-performance web applications using JavaScript, React, and Next.js.",
+      "I focus on creating smooth user experiences, clean UI, and writing maintainable, scalable code.",
+      "I enjoy solving real-world problems through technology and continuously learning modern tools and frameworks.",
+      "Outside development, I love exploring new UI ideas, keeping up with emerging tech, and improving my skills with personal projects."
       ],
     },
   ],
@@ -477,7 +519,7 @@ const TRASH_LOCATION = {
       kind: "file",
       fileType: "img",
       position: "top-10 left-10",
-      imageUrl: "/images/trash-1.png",
+      imageUrl: "/images/work-3.png",
     },
     {
       id: 2,
@@ -486,7 +528,25 @@ const TRASH_LOCATION = {
       kind: "file",
       fileType: "img",
       position: "top-40 left-80",
-      imageUrl: "/images/trash-2.png",
+      imageUrl: "/images/work-4.png",
+    },
+    {
+      id: 3,
+      name: "trash3.png",
+      icon: "/images/image.png",
+      kind: "file",
+      fileType: "img",
+      position: "top-70 left-10",
+      imageUrl: "/images/work-5.png",
+    },
+    {
+      id: 4,
+      name: "trash4.png",
+      icon: "/images/image.png",
+      kind: "file",
+      fileType: "img",
+      position: "top-70 left-80",
+      imageUrl: "/images/work-1.png",
     },
   ],
 };

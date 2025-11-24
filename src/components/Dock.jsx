@@ -56,11 +56,23 @@ const Dock = () => {
 
 
   const toggleApp=(app)=>{
+    // Handle LinkedIn redirect
+    if(app.id === 'linkedin'){
+      window.open('https://www.linkedin.com/in/karan-s-d-69577434a/', '_blank');
+      return;
+    }
+
+    // Handle GitHub redirect
+    if(app.id === 'github'){
+      window.open('https://github.com/Karansd44', '_blank');
+      return;
+    }
+
     if(!app.canOpen) return;
     
-    const window = windows[app.id];
+    const windowState = windows[app.id];
 
-    if(window.isOpen){
+    if(windowState.isOpen){
         closeWindow(app.id);
     }else{
         openWindow(app.id);

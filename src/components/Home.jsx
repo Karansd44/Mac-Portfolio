@@ -5,13 +5,14 @@ import {useGSAP} from '@gsap/react';
 import {Draggable} from "gsap/Draggable"
 import useWindowStore from "#store/window"
 import useLocationStore from "#store/location"
-
 import gsap from 'gsap';
 
 const projects = locations.work ?. children ?? [];
+
 const Home = () => {
     const {setActiveLocation} = useLocationStore()
     const {openWindow} = useWindowStore()
+
     const handleOpenProjectFinder = (project) => {
         setActiveLocation(project)
         openWindow("finder")
@@ -38,7 +39,8 @@ const Home = () => {
                 localStorage.setItem('folderPositions', JSON.stringify(newPositions));
             }
         });
-    }, [])
+    }, [projects])
+
     return (
         <section id='home'>
             <ul> {
