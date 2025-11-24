@@ -2,7 +2,7 @@ import useWindowStore from '#store/window'
 import {useGSAP} from '@gsap/react';
 import React, {useLayoutEffect, useRef} from 'react'
 import gsap from 'gsap';
-import { Draggable } from 'gsap/all';
+import {Draggable} from 'gsap/all';
 
 const WindowWrapper = (Component, windowKey) => {
     const Wrapped = (props) => {
@@ -15,6 +15,7 @@ const WindowWrapper = (Component, windowKey) => {
             if (! el || !isOpen) 
                 return;
             
+
 
             el.style.display = "block";
 
@@ -32,14 +33,20 @@ const WindowWrapper = (Component, windowKey) => {
 
         }, [isOpen]);
 
-        useGSAP(()=>{
+        useGSAP(() => {
             const el = ref.current;
-            if (!el) return;
+            if (! el) 
+                return;
+            
 
-            const [instance] = Draggable.create(el,{onPress:()=>focusWindow(windowKey)})
+            const header = el.querySelector('#window-header');
+            const [instance] = Draggable.create(el, {
+                trigger: header || el,
+                onPress: () => focusWindow(windowKey)
+            })
 
-            return ()=>instance.kill();
-        },[])
+            return() => instance.kill();
+        }, [])
 
 
         useLayoutEffect(() => {
@@ -47,6 +54,7 @@ const WindowWrapper = (Component, windowKey) => {
             if (! el) 
                 return;
             
+
 
             el.style.display = isOpen ? "block" : "none";
         }, [isOpen])
