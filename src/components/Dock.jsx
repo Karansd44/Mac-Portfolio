@@ -1,111 +1,122 @@
-import { dockApps } from '#constants'
-import { useGSAP } from '@gsap/react';
+import {dockApps} from '../constants'
+import {useGSAP} from '@gsap/react';
 import gsap from 'gsap';
-import React, { useRef } from 'react'
-import { Tooltip } from 'react-tooltip'
+import React, {useRef} from 'react'
+import {Tooltip} from 'react-tooltip'
 import useWindowStore from '#store/window';
 
 
 const Dock = () => {
-  const dockRef = useRef(null);
-  const {windows, openWindow,closeWindow,focusWindow}=useWindowStore();
+    const dockRef = useRef(null);
+    const {windows, openWindow, closeWindow, focusWindow} = useWindowStore();
 
-  useGSAP(()=>{
-    const dock = dockRef.current;
-    if(!dock) return;
-    const icons = dock.querySelectorAll(".dock-icon");
-    const animateIcons =(mouseX)=>{
-        const {left}= dock.getBoundingClientRect();
-        icons.forEach((icon)=>{
-            const {left : iconLeft, width}= icon.getBoundingClientRect();
-            const center = iconLeft -left + width/2;
-            const distance = Math.abs(mouseX-center);
-            const intensity = Math.exp(-(distance ** 2) / 5000);
+    useGSAP(() => {
+        const dock = dockRef.current;
+        if (! dock) 
+            return;
+        
+        const icons = dock.querySelectorAll(".dock-icon");
+        const animateIcons = (mouseX) => {
+            const {left} = dock.getBoundingClientRect();
+            icons.forEach((icon) => {
+                const {left: iconLeft, width} = icon.getBoundingClientRect();
+                const center = iconLeft - left + width / 2;
+                const distance = Math.abs(mouseX - center);
+                const intensity = Math.exp(-(distance ** 2) / 5000);
 
 
+                gsap.to(icon, {
+                    scale: 1 + 0.25 * intensity,
+                    y: -15 * intensity,
+                    duration: 0.2,
+                    ease: "power3.out"
+                })
+            })
+        }
 
-            gsap.to(icon,{
-                scale :1 +0.25* intensity,
-                y: -15* intensity,
-                duration:0.2,
-                ease:"power3.out"
+        const handleMouseMove = (e) => {
+            const {left} = dock.getBoundingClientRect();
+            animateIcons(e.clientX - left);
+        }
+        const resetIcons = () => icons.forEach(icon => {
+            gsap.to(icon, {
+                scale: 1,
+                y: 0,
+                duration: 0.3,
+                ease: "power1.out"
             })
         })
+        dock.addEventListener("mousemove", handleMouseMove);
+        dock.addEventListener("mouseleave", resetIcons);
+        return() => {
+            dock.removeEventListener("mousemove", handleMouseMove)
+            dock.removeEventListener("mouseleave", resetIcons)
+
+        }
+    }, [])
+
+
+    const toggleApp = (app) => { // Handle LinkedIn redirect
+        if (app.id === 'linkedin') {
+            window.open('https://www.linkedin.com/in/karan-s-d-69577434a/', '_blank');
+            return;
+        }
+
+        // Handle GitHub redirect
+        if (app.id === 'github') {
+            window.open('https://github.com/Karansd44', '_blank');
+            return;
+        }
+
+        if (!app.canOpen) 
+            return;
+        
+
+        const windowState = windows[app.id];
+
+        if (windowState.isOpen) {
+            closeWindow(app.id);
+        } else {
+            openWindow(app.id);
+        }
     }
 
-    const handleMouseMove =(e) =>{
-        const {left}= dock.getBoundingClientRect();
-       animateIcons(e.clientX-left);
-    }
-    const resetIcons =()=> icons.forEach(icon=>{
-        gsap.to(icon,{
-            scale:1,
-            y:0,
-            duration:0.3,
-            ease:"power1.out"
-        })
-    })
-    dock.addEventListener("mousemove",handleMouseMove);
-    dock.addEventListener("mouseleave",resetIcons);
-    return ()=>{
-        dock.removeEventListener("mousemove",handleMouseMove)
-        dock.removeEventListener("mouseleave",resetIcons)
 
-    }
-  },[])
-
-
-  const toggleApp=(app)=>{
-    // Handle LinkedIn redirect
-    if(app.id === 'linkedin'){
-      window.open('https://www.linkedin.com/in/karan-s-d-69577434a/', '_blank');
-      return;
-    }
-
-    // Handle GitHub redirect
-    if(app.id === 'github'){
-      window.open('https://github.com/Karansd44', '_blank');
-      return;
-    }
-
-    if(!app.canOpen) return;
-    
-    const windowState = windows[app.id];
-
-    if(windowState.isOpen){
-        closeWindow(app.id);
-    }else{
-        openWindow(app.id);
-    }
-  }
-
-
-
-  return (
-    <section id="dock">
-      <div ref={dockRef} className='dock-container'>
-        {dockApps.map(({ id, name, icon, canOpen }) => (
-            <div key={id} className='relative flex justify-center'>
-                <button 
-                type='button' 
-                aria-label={name} 
-                className="dock-icon" 
-                data-tooltip-content={name} 
-                data-tooltip-id="dock-tooltip" 
-                data-tooltip-delay-show={!canOpen}
-                onClick={()=>toggleApp({id,canOpen})}>
-                    <img 
-                    src={`/images/${icon}`} 
-                    alt={name} 
-                    loading="lazy" 
-                    className={canOpen ? "" : "opacity-60"}/>
-                </button>
+    return (
+        <section id="dock">
+            <div ref={dockRef}
+                className='dock-container'>
+                {
+                dockApps.map(({id, name, icon, canOpen}) => (
+                    <div key={id}
+                        className='relative flex justify-center'>
+                        <button type='button'
+                            aria-label={name}
+                            className="dock-icon"
+                            data-tooltip-content={name}
+                            data-tooltip-id="dock-tooltip"
+                            data-tooltip-delay-show={
+                                !canOpen
+                            }
+                            onClick={
+                                () => toggleApp({id, canOpen})
+                        }>
+                            <img src={
+                                    `/images/${icon}`
+                                }
+                                alt={name}
+                                loading="lazy"
+                                className={
+                                    canOpen ? "" : "opacity-60"
+                                }/>
+                        </button>
+                    </div>
+                ))
+            }
+                <Tooltip id="dock-tooltip" place="top" className='tooltip'/>
             </div>
-        ))}
-        <Tooltip id="dock-tooltip" place="top" className='tooltip'/>
-      </div>
-    </section>
-  )
+        </section>
+    )
 }
 
 export default Dock
