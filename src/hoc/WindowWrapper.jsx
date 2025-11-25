@@ -39,11 +39,25 @@ const WindowWrapper = (Component, windowKey) => {
             if (!el) return;
 
             if (isMinimized) {
-                // Get dock position (bottom center of screen)
-                const dockPosition = {
-                    x: window.innerWidth / 2,
-                    y: window.innerHeight - 50
-                };
+                // Find the corresponding dock icon
+                const dockIcon = document.querySelector(`button[aria-label="${windowKey}"]`) || 
+                                 document.querySelector(`#dock .dock-icon[data-window="${windowKey}"]`);
+                
+                let dockPosition;
+                if (dockIcon) {
+                    // Get exact dock icon position
+                    const iconRect = dockIcon.getBoundingClientRect();
+                    dockPosition = {
+                        x: iconRect.left + iconRect.width / 2,
+                        y: iconRect.top + iconRect.height / 2
+                    };
+                } else {
+                    // Fallback to dock center
+                    dockPosition = {
+                        x: window.innerWidth / 2,
+                        y: window.innerHeight - 50
+                    };
+                }
 
                 // Get current window position
                 const rect = el.getBoundingClientRect();
@@ -52,7 +66,7 @@ const WindowWrapper = (Component, windowKey) => {
                     y: rect.top + rect.height / 2
                 };
 
-                // Calculate movement to dock
+                // Calculate movement to dock icon
                 const moveX = dockPosition.x - windowCenter.x;
                 const moveY = dockPosition.y - windowCenter.y;
 
@@ -60,12 +74,12 @@ const WindowWrapper = (Component, windowKey) => {
                 const tl = gsap.timeline();
                 
                 tl.to(el, {
-                    scale: 0.2,
+                    scale: 0.15,
                     x: moveX,
                     y: moveY,
                     opacity: 0,
-                    duration: 0.3,
-                    ease: "power2.in",
+                    duration: 0.2,
+                    ease: "power3.in",
                     transformOrigin: "center bottom"
                 });
             } else if (isOpen && !isMinimized) {
@@ -75,8 +89,8 @@ const WindowWrapper = (Component, windowKey) => {
                     x: 0,
                     y: 0,
                     opacity: 1,
-                    duration: 0.25,
-                    ease: "power2.out",
+                    duration: 0.2,
+                    ease: "power3.out",
                     transformOrigin: "center center"
                 });
             }
