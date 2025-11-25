@@ -2,6 +2,17 @@
 
 @import "tailwindcss";
 
+@keyframes menuSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 html,
 body {
   width: 100dvw;
@@ -44,6 +55,18 @@ body {
 
       &:last-child {
         @apply max-sm:hidden;
+      }
+
+      .relative {
+        @apply relative;
+
+        button {
+          @apply p-1 rounded transition-colors;
+
+          img {
+            @apply w-6 h-6;
+          }
+        }
       }
     }
 
