@@ -3,9 +3,13 @@ import WindowWrapper from "#hoc/WindowWrapper"
 import WindowControls from "#components/WindowControls"
 import {gallery, photosLinks} from "../constants"
 import useWindowStore from "#store/window"
+import {useState} from "react"
+import clsx from "clsx"
 
 const Photos = () => {
     const {openWindow} = useWindowStore()
+    const [activeTab, setActiveTab] = useState(1) // Default to Library
+    
     return (
         <>
             <div id="window-header">
@@ -24,7 +28,14 @@ const Photos = () => {
                     <h2>Photos</h2>
                     <ul> {
                         photosLinks.map(({id, icon, title}) => (
-                            <li key={id}>
+                            <li 
+                                key={id}
+                                onClick={() => setActiveTab(id)}
+                                className={clsx(
+                                    "cursor-pointer transition-colors",
+                                    activeTab === id && "bg-blue-100 text-blue-700"
+                                )}
+                            >
                                 <img src={icon}
                                     alt={title}/>
                                 <p>{title}</p>

@@ -102,15 +102,15 @@ body {
     @apply flex gap-2;
 
     .close {
-      @apply size-3.5 rounded-full bg-[#ff6157] cursor-pointer;
+      @apply size-3.5 rounded-full bg-[#ff6157] cursor-pointer hover:brightness-110 transition-all;
     }
 
     .minimize {
-      @apply size-3.5 rounded-full bg-[#ffc030];
+      @apply size-3.5 rounded-full bg-[#ffc030] cursor-pointer hover:brightness-110 transition-all;
     }
 
     .maximize {
-      @apply size-3.5 rounded-full bg-[#2acb42];
+      @apply size-3.5 rounded-full bg-[#2acb42] cursor-pointer hover:brightness-110 transition-all;
     }
   }
 
@@ -250,8 +250,8 @@ body {
         li {
           @apply flex space-y-1 items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors;
 
-          &:first-child {
-            @apply bg-blue-100 text-blue-700;
+          &:hover {
+            @apply bg-gray-200;
           }
 
           img {

@@ -70,7 +70,7 @@ const dockApps = [
     id: "trash",
     name: "Archive", // was "Trash"
     icon: "trash.png",
-    canOpen: false,
+    canOpen: true,
   },
   {
     id: "linkedin",
@@ -228,7 +228,7 @@ const WORK_LOCATION = {
       name: "MedMind ASK",
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-10 left-5", // icon position inside Finder
+      position: "top-14 left-52", // icon position inside Finder
       windowPosition: "top-[45vh] right-5", // optional: Finder window position
       children: [
         {
@@ -272,7 +272,7 @@ const WORK_LOCATION = {
       name: "Cocktail Website",
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-10 right-70",
+      position: "top-8 left-16",
       windowPosition: "top-[20vh] left-7",
       children: [
         {
@@ -316,7 +316,7 @@ const WORK_LOCATION = {
       name: "E-Commerce Platform",
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-10 left-70",
+      position: "top-48 left-68",
       windowPosition: "top-[70vh] left-7",
       children: [
         {
@@ -359,7 +359,7 @@ const WORK_LOCATION = {
       name: "Uber Clone",
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-10 right-3",
+      position: "top-36 left-22",
       windowPosition: "top-[45vh] left-96",
       children: [
         {
@@ -402,7 +402,7 @@ const WORK_LOCATION = {
       name: "Portfolio",
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-40 left-3",
+      position: "top-62 left-38",
       windowPosition: "top-[5vh] left-96",
       children: [
         {
@@ -527,7 +527,7 @@ const TRASH_LOCATION = {
       icon: "/images/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-40 left-80",
+      position: "top-10 left-80",
       imageUrl: "/images/work-4.png",
     },
     {
@@ -536,7 +536,7 @@ const TRASH_LOCATION = {
       icon: "/images/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-70 left-10",
+      position: "top-60 left-10",
       imageUrl: "/images/work-5.png",
     },
     {
@@ -545,7 +545,7 @@ const TRASH_LOCATION = {
       icon: "/images/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-70 left-80",
+      position: "top-60 left-80",
       imageUrl: "/images/work-1.png",
     },
   ],
@@ -561,14 +561,14 @@ export const locations = {
 const INITIAL_Z_INDEX = 1000;
 
 const WINDOW_CONFIG = {
-  finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  safari: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  photos: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
+  contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
+  resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
+  safari: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
+  photos: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
+  terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
+  txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
+  imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null, isMinimized: false, isMaximized: false },
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };

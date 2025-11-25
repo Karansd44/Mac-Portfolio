@@ -4,11 +4,14 @@ import gsap from 'gsap';
 import React, {useRef} from 'react'
 import {Tooltip} from 'react-tooltip'
 import useWindowStore from '#store/window';
+import useLocationStore from '#store/location';
+import {locations} from '../constants';
 
 
 const Dock = () => {
     const dockRef = useRef(null);
     const {windows, openWindow, closeWindow, focusWindow} = useWindowStore();
+    const {setActiveLocation} = useLocationStore();
 
     useGSAP(() => {
         const dock = dockRef.current;
@@ -56,7 +59,22 @@ const Dock = () => {
     }, [])
 
 
-    const toggleApp = (app) => { // Handle LinkedIn redirect
+    const toggleApp = (app) => {
+        // Handle finder/portfolio - open finder with about me location
+        if (app.id === 'finder') {
+            setActiveLocation(locations.about);
+            openWindow('finder');
+            return;
+        }
+
+        // Handle trash/archive - open finder with trash location
+        if (app.id === 'trash') {
+            setActiveLocation(locations.trash);
+            openWindow('finder');
+            return;
+        }
+
+        // Handle LinkedIn redirect
         if (app.id === 'linkedin') {
             window.open('https://www.linkedin.com/in/karan-s-d-69577434a/', '_blank');
             return;
