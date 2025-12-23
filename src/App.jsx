@@ -1,6 +1,6 @@
 import gsap from 'gsap';
-import {Draggable} from "gsap/Draggable"
-import {useState} from 'react';
+import { Draggable } from "gsap/Draggable"
+import { useState, lazy, Suspense } from 'react';
 
 import {
     Navbar,
@@ -9,16 +9,16 @@ import {
     Home,
     AppleLoader
 } from '#components'
-import {
-    Terminal,
-    Safari,
-    Resume,
-    Finder,
-    Text,
-    Image,
-    Contact,
-    Photos
-} from '#windows';
+
+// Lazy load window components to improve initial load time
+const Terminal = lazy(() => import('#windows/Terminal'));
+const Safari = lazy(() => import('#windows/Safari'));
+const Resume = lazy(() => import('#windows/Resume'));
+const Finder = lazy(() => import('#windows/Finder'));
+const Text = lazy(() => import('#windows/Text'));
+const Image = lazy(() => import('#windows/Image'));
+const Contact = lazy(() => import('#windows/Contact'));
+const Photos = lazy(() => import('#windows/Photos'));
 
 gsap.registerPlugin(Draggable);
 
@@ -30,7 +30,7 @@ const App = () => {
         <> {
             loading && <AppleLoader onComplete={
                 () => setLoading(false)
-            }/>
+            } />
         }
             <main style={
                 {
@@ -38,18 +38,20 @@ const App = () => {
                     transition: 'opacity 0.5s ease-in'
                 }
             }>
-                <Navbar/>
-                <Welcome/>
-                <Dock/>
-                <Terminal/>
-                <Safari/>
-                <Resume/>
-                <Finder/>
-                <Text/>
-                <Image/>
-                <Contact/>
-                <Home/>
-                <Photos/>
+                <Navbar />
+                <Welcome />
+                <Dock />
+                <Suspense fallback={null}>
+                    <Terminal />
+                    <Safari />
+                    <Resume />
+                    <Finder />
+                    <Text />
+                    <Image />
+                    <Contact />
+                    <Photos />
+                </Suspense>
+                <Home />
             </main>
         </>
     )
