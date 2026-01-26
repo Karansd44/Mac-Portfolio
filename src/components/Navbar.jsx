@@ -25,7 +25,7 @@ const Navbar = () => {
 
     const handleShutdown = () => {
         // Close all windows
-        Object.keys(['finder', 'contact', 'resume', 'safari', 'photos', 'terminal', 'txtfile', 'imgfile']).forEach(window => {
+        ['finder', 'contact', 'resume', 'safari', 'photos', 'terminal', 'txtfile', 'imgfile'].forEach(window => {
             closeWindow(window);
         });
         setShowAppleMenu(false);
@@ -81,7 +81,7 @@ const Navbar = () => {
 
     const handleRestart = () => {
         // Close all windows
-        Object.keys(['finder', 'contact', 'resume', 'safari', 'photos', 'terminal', 'txtfile', 'imgfile']).forEach(window => {
+        ['finder', 'contact', 'resume', 'safari', 'photos', 'terminal', 'txtfile', 'imgfile'].forEach(window => {
             closeWindow(window);
         });
         setShowAppleMenu(false);
@@ -150,23 +150,24 @@ const Navbar = () => {
                     
                     {showAppleMenu && (
                         <div 
-                            className="absolute top-full left-0 mt-1 w-56 backdrop-blur-xl bg-white/80 rounded-lg shadow-lg border border-white/20 z-50 overflow-hidden"
+                            className="absolute top-full left-0 mt-1 w-56 backdrop-blur-xl bg-white/80 rounded-lg shadow-lg border border-white/20 z-50 overflow-hidden transition-all duration-200 ease-out"
                             style={{
-                                animation: 'menuSlideDown 0.2s ease-out',
-                                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.25), 0 0 0 0.5px rgba(0, 0, 0, 0.1)'
+                                animation: 'menuSlideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                                transformOrigin: 'top left',
+                                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.25), 0 0 0 0.5px rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.5)'
                             }}
                         >
                             <div className="py-1">
                                 <button
                                     onClick={handleRestart}
-                                    className="w-full px-3 py-1.5 text-left text-sm text-gray-800 hover:bg-blue-500 hover:text-white transition-colors duration-100 flex items-center gap-2.5"
+                                    className="w-full px-3 py-1.5 text-left text-sm text-gray-800 hover:bg-blue-500 hover:text-white transition-all duration-150 ease-out flex items-center gap-2.5"
                                 >
                                     <RotateCw size={14} strokeWidth={2} />
                                     <span className="font-normal">Restart...</span>
                                 </button>
                                 <button
                                     onClick={handleShutdown}
-                                    className="w-full px-3 py-1.5 text-left text-sm text-gray-800 hover:bg-blue-500 hover:text-white transition-colors duration-100 flex items-center gap-2.5"
+                                    className="w-full px-3 py-1.5 text-left text-sm text-gray-800 hover:bg-blue-500 hover:text-white transition-all duration-150 ease-out flex items-center gap-2.5"
                                 >
                                     <Power size={14} strokeWidth={2} />
                                     <span className="font-normal">Shut Down...</span>
